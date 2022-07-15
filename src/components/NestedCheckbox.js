@@ -38,7 +38,6 @@ function NestedCheckbox(props) {
       for (let i = 0; i < node.children.length; i++) {
         changeCheckVal(node.children[i], val);
       }
-      changeCheckVal();
     } else {
       onChange(treeMap);
     }

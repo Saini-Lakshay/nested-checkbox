@@ -86,4 +86,12 @@ export const data = [
     name: "Rugby",
     parentId: "Sports",
   },
+  {
+    name: "GT 1",
+    parentId: "Gujarat Titans",
+  },
+  {
+    name: "GT 2",
+    parentId: "Gujarat Titans",
+  },
 ];
