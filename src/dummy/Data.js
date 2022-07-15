@@ -58,4 +58,32 @@ export const data = [
     name: "Mumbai Indians",
     parentId: "IPL",
   },
+  {
+    name: "MPL",
+    parentId: "Sports",
+  },
+  {
+    name: "Arsenal",
+    parentId: "MPL",
+  },
+  {
+    name: "Chelsea",
+    parentId: "MPL",
+  },
+  {
+    name: "Manchester United",
+    parentId: "MPL",
+  },
+  {
+    name: "NBA",
+    parentId: "Sports",
+  },
+  {
+    name: "Soccer",
+    parentId: "Sports",
+  },
+  {
+    name: "Rugby",
+    parentId: "Sports",
+  },
 ];

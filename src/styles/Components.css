@@ -5,12 +5,15 @@
   align-items: center;
   padding: 0.2rem;
   margin: 5px;
+  z-index: 2;
   /* border: 2px solid black; */
 }
 
 #checkbox_wrapper span {
   border-radius: 0.5rem;
   border: 1px solid #cad1d4;
+  z-index: 2;
+  background-color: #ffffff;
 }
 
 #checkbox_wrapper label {
@@ -25,7 +28,7 @@
   appearance: none;
   height: 18px;
   width: 18px;
-  background-color: transparent;
+  background-color: #ffffff;
   border-radius: 9px;
   cursor: pointer;
   display: flex;
@@ -58,7 +61,7 @@
 }
 
 .nonleaf_hr {
-  height: 85%;
+  height: 90%;
   top: 30px;
 }
 

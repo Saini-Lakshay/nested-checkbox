@@ -1,11 +1,48 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Checkbox from "./Checkbox";
 import ExpandToggler from "./ExpandToggler";
+import { listToTreeData } from "../shared/Helper";
 
 function NestedCheckbox(props) {
-  let { data, treeMap, onChange } = props;
+  let { value, onChange, treeDataProps, treeMapProps } = props;
 
+  const [treeData, setTreeData] = useState([]);
+  const [treeMap, setTreeMap] = useState({});
   const [expandChildren, setExpandChildren] = useState({});
+
+  useEffect(() => {
+    initConfig();
+  }, []);
+
+  const initConfig = () => {
+    if (!treeDataProps && !treeMapProps) {
+      let { treeData, map } = listToTreeData(value);
+      setTreeData(treeData);
+      setTreeMap(map);
+    } else {
+      setTreeData(treeDataProps);
+      setTreeMap(treeMapProps);
+    }
+  };
+
+  const changeCheckVal = (node, val) => {
+    if (!node) {
+      return;
+    }
+    let key = node.name;
+    let updatedTree = { ...treeMap };
+    let updatedNode = updatedTree[key];
+    updatedNode["isChecked"] = val;
+    setTreeMap({ ...updatedTree });
+    if (node.children && node.children.length > 0) {
+      for (let i = 0; i < node.children.length; i++) {
+        changeCheckVal(node.children[i], val);
+      }
+      changeCheckVal();
+    } else {
+      onChange(treeMap);
+    }
+  };
 
   const toggleExpandChildren = (index) => {
     let newExpandedChildren = { ...expandChildren };
@@ -15,14 +52,9 @@ function NestedCheckbox(props) {
     setExpandChildren(newExpandedChildren);
   };
 
-  const toggleChecked = (node) => {
-    let currVal = treeMap[node.name] && treeMap[node.name].isChecked;
-    onChange(node, !currVal);
-  };
-
   return (
     <div>
-      {data?.map((d, index) => {
+      {treeData?.map((d, index) => {
         let isLeafNode = d?.children?.length == 0;
         return (
           <div key={`dataName${index}`} className="nested_data_wrapper">
@@ -39,14 +71,20 @@ function NestedCheckbox(props) {
               <Checkbox
                 label={d.name}
                 isChecked={treeMap[d.name] && treeMap[d.name].isChecked}
-                onChange={() => toggleChecked(d)}
+                onChange={() =>
+                  changeCheckVal(
+                    d,
+                    treeMap[d.name] && treeMap[d.name].isChecked ? false : true
+                  )
+                }
               />
             </div>
             {expandChildren[index] && !isLeafNode && (
-              <div key={`nested-children`} className="nested_children">
+              <div key={`nested-children`} className={`nested_children`}>
                 <NestedCheckbox
-                  data={d.children}
-                  treeMap={treeMap}
+                  value={value}
+                  treeDataProps={d.children}
+                  treeMapProps={treeMap}
                   onChange={onChange}
                 />
               </div>
