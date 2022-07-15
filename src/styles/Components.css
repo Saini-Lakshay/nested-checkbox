@@ -38,8 +38,28 @@
 }
 
 .nested_data_wrapper {
-  margin: 10px;
-  cursor: pointer;
+  margin: 10px 10px 10px 15px;
+  position: relative;
+  /* border: 2px solid black; */
+}
+
+.nested_data_wrapper hr {
+  position: absolute;
+  left: 46px;
+  border: 1px dotted grey;
+  z-index: 0;
+}
+
+.leaf_hr {
+  width: 2%;
+  max-width: 1rem;
+  top: 13px;
+  left: 0.75rem !important;
+}
+
+.nonleaf_hr {
+  height: 85%;
+  top: 30px;
 }
 
 .expandToggler_wrapper {
@@ -50,19 +70,20 @@
 
 .nested_children {
   margin-left: 20px;
-  cursor: pointer;
 }
 
 .expand-toggler {
-  padding: 0.3rem;
+  padding: 0.2rem;
   border: 1px solid #74838f;
   height: 18px;
   width: 18px;
   border-radius: 50%;
-  text-align: center;
   color: #74838f;
   display: flex;
   justify-content: center;
   align-items: center;
   font-weight: bold;
+  cursor: pointer;
+  background-color: #ffffff;
+  z-index: 2;
 }

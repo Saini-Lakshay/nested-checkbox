@@ -28,17 +28,29 @@ function App() {
       }
     }
     for (let i = 0; i < listData.length; i++) {
-      map[listData[i].name] = { isChecked: false };
+      let isRoot = listData[i].parentId == null ? true : false;
+      map[listData[i].name] = { isChecked: false, isRoot: isRoot };
     }
     setTreeData(treeData);
     setTreeMap(map);
   };
 
-  const changeCheckVal = (key, val) => {
+  const changeCheckVal = (node, val) => {
+    if (!node) {
+      return;
+    }
+    let key = node.name;
     let updatedTree = { ...treeMap };
     let updatedNode = updatedTree[key];
     updatedNode["isChecked"] = val;
     setTreeMap({ ...updatedTree });
+    if (node.children && node.children.length > 0) {
+      // recursively calling same function for children
+      for (let i = 0; i < node.children.length; i++) {
+        changeCheckVal(node.children[i], val);
+      }
+      changeCheckVal();
+    }
   };
 
   useEffect(() => {
@@ -49,7 +61,7 @@ function App() {
     <div className="App">
       <NestedCheckbox
         data={treeData}
-        checkedMap={treeMap}
+        treeMap={treeMap}
         onChange={changeCheckVal}
       />
     </div>
@@ -57,68 +69,3 @@ function App() {
 }
 
 export default App;
-
-/*
-
-tree = [
-  {
-    id: "0-0",
-    name: "Sports",
-    isChecked: false,
-    children: [
-      {
-        id: "0-0-0",
-        name: "IPL",
-        isChecked: false,
-        children: [
-          {
-            id="0-0-0-0",
-            name: "Mumbai Indians",
-            isChecked: false,
-            children: []
-          },
-          {
-            id="0-0-0-1",
-            name: "Rajasthan Royals",
-            isChecked: false,
-            children: []
-          },
-        ]
-      },
-      {
-        id: "0-0-1",
-        name: "EPL",
-        isChecked: false,
-        children: [
-          {
-            id="0-0-1-0",
-            name: "Arsenal",
-            isChecked: false,
-            children: []
-          }
-        ]
-      },
-      {
-        id: "0-0-2",
-        name: "NBA",
-        isChecked: false,
-        children: []
-      }
-    ]
-  },
-  {
-    id: "0-1",
-    name: "Riding",
-    isChecked: false,
-    children: []
-  }
-]
-
-
-
-
-////////////////////////////////////////
-
-checked: [] includes all ids that are checked!
-
-*/
