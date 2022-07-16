@@ -1,5 +1,5 @@
 function Checkbox(props) {
-  const { label, isChecked, onChange } = props;
+  const { label, isIntermediate, isChecked, onChange } = props;
   return (
     <div id="checkbox_wrapper">
       <span>
@@ -7,6 +7,13 @@ function Checkbox(props) {
           type="checkbox"
           checked={isChecked}
           onChange={() => onChange()}
+          style={
+            isIntermediate
+              ? {
+                  backgroundColor: "orange",
+                }
+              : {}
+          }
         />
       </span>
       <label>{label}</label>

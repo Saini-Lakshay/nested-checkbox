@@ -25,21 +25,60 @@ function NestedCheckbox(props) {
     }
   };
 
-  const changeCheckVal = (node, val) => {
+  const changeCheckVal = (node, val, updatedTree) => {
     if (!node) {
       return;
     }
     let key = node.name;
-    let updatedTree = { ...treeMap };
     let updatedNode = updatedTree[key];
     updatedNode["isChecked"] = val;
-    setTreeMap({ ...updatedTree });
+    updatedNode["isIntermediate"] = false;
     if (node.children && node.children.length > 0) {
       for (let i = 0; i < node.children.length; i++) {
-        changeCheckVal(node.children[i], val);
+        changeCheckVal(node.children[i], val, updatedTree);
       }
     } else {
-      onChange(treeMap);
+      setTreeMap({ ...updatedTree });
+      onChange({ ...updatedTree });
+    }
+  };
+
+  const changeIntermediateVal = (parentId, updatedTreeMap) => {
+    if (!parentId) {
+      return;
+    }
+    let checkedCount = 0;
+    let unCheckedCount = 0;
+    let intermediateCount = 0;
+    let siblings = value?.filter((node) => node.parentId == parentId);
+    for (let i = 0; i < siblings.length; i++) {
+      let name = siblings[i]?.name;
+      if (treeMap[name].isIntermediate) {
+        intermediateCount++;
+        break;
+      } else if (treeMap[name].isChecked) {
+        checkedCount++;
+      } else {
+        unCheckedCount++;
+      }
+    }
+    if (intermediateCount > 0) {
+      updatedTreeMap[parentId]["isIntermediate"] = true;
+    } else if (checkedCount === siblings.length) {
+      updatedTreeMap[parentId]["isIntermediate"] = false;
+      updatedTreeMap[parentId]["isChecked"] = true;
+    } else if (unCheckedCount === siblings.length) {
+      updatedTreeMap[parentId]["isIntermediate"] = false;
+      updatedTreeMap[parentId]["isChecked"] = false;
+    } else {
+      updatedTreeMap[parentId]["isIntermediate"] = true;
+    }
+    let grandParent = value.filter((node) => node.name == parentId)[0]
+      ?.parentId;
+    if (grandParent) {
+      changeIntermediateVal(grandParent, updatedTreeMap);
+    } else {
+      setTreeMap(updatedTreeMap);
     }
   };
 
@@ -69,13 +108,18 @@ function NestedCheckbox(props) {
               />
               <Checkbox
                 label={d.name}
+                isIntermediate={
+                  treeMap[d.name] && treeMap[d.name].isIntermediate
+                }
                 isChecked={treeMap[d.name] && treeMap[d.name].isChecked}
-                onChange={() =>
+                onChange={() => {
                   changeCheckVal(
                     d,
-                    treeMap[d.name] && treeMap[d.name].isChecked ? false : true
-                  )
-                }
+                    treeMap[d.name] && treeMap[d.name].isChecked ? false : true,
+                    { ...treeMap }
+                  );
+                  changeIntermediateVal(d.parentId, { ...treeMap });
+                }}
               />
             </div>
             {expandChildren[index] && !isLeafNode && (

@@ -17,7 +17,12 @@ export const listToTreeData = (listData = []) => {
   }
   for (let i = 0; i < listData.length; i++) {
     let isRoot = listData[i].parentId == null ? true : false;
-    map[listData[i].name] = { isChecked: false, isRoot: isRoot };
+    map[listData[i].name] = {
+      isChecked: false,
+      isRoot: isRoot,
+      idChecked: false,
+      isIntermediate: false,
+    };
   }
   return { treeData, map };
 };
