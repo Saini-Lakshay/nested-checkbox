@@ -29,3 +29,76 @@ On opening of the children that + is converted to - icon and can be clicked to s
 
 Scope of a checkbox is defined as the children of that checkbox which is represented by a vertical line in the component.
 All checkboxes with no children and which have some parent are connected by horizontal lines to their parent.
+
+# Dummy Data Example
+
+Data could be unsorted in any form:
+
+```json
+"data" = [
+  {
+    "name": "Sports",
+    "parentId": null,
+  },
+  {
+    "name": "Rajasthan Royals",
+    "parentId": "IPL",
+  },
+  {
+    "name": "Gujarat Titans",
+    "parentId": "IPL",
+  },
+  {
+    "name": "Study",
+    "parentId": null,
+  },
+  {
+    "name": "Health",
+    "parentId": null,
+  },
+  {
+    "name": "IPL",
+    "parentId": "Sports",
+  },
+  {
+    "name": "Mumbai Indians",
+    "parentId": "IPL",
+  },
+  {
+    "name": "MPL",
+    "parentId": "Sports",
+  },
+  {
+    "name": "Arsenal",
+    "parentId": "MPL",
+  },
+  {
+    "name": "Chelsea",
+    "parentId": "MPL",
+  },
+  {
+    "name": "Manchester United",
+    "parentId": "MPL",
+  },
+  {
+    "name": "NBA",
+    "parentId": "Sports",
+  },
+  {
+    "name": "Soccer",
+    "parentId": "Sports",
+  },
+  {
+    "name": "Rugby",
+    "parentId": "Sports",
+  },
+  {
+    "name": "GT 1",
+    "parentId": "Gujarat Titans",
+  },
+  {
+    "name": "GT 2",
+    "parentId": "Gujarat Titans",
+  },
+]
+```
