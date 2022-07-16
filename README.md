@@ -10,14 +10,14 @@ There are 3 states of a checkbox:
 2. Unchecked : if the checkbox is un-checked (along with its children un-checked).
 3. Intermediate : if some children are checked and some are un-checked.
 
-State of the checkbox is depicted through the color of the checkbox.
--> transparent : not checked
--> green : checked
+State of the checkbox is depicted through the color of the checkbox.<br />
+-> transparent : not checked<br />
+-> green : checked<br />
 -> orange : intermediate
 
-Note: 
--> state of a checkbox can be manually changed to checked or unchecked by clicking on checkbox. intermediate state is automatically set for a checkbox.
--> if a parent's state is toggled then the state of all children are also set to parent's toggled state(checked or unchecked).
+Note: <br />
+-> state of a checkbox can be manually changed to checked or unchecked by clicking on checkbox. intermediate state is automatically set for a checkbox.<br />
+-> if a parent's state is toggled then the state of all children are also set to parent's toggled state(checked or unchecked).<br />
 
 
 # Expanding/Shrinking the children of a checkbox
