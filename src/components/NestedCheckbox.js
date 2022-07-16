@@ -33,6 +33,7 @@ function NestedCheckbox(props) {
     let updatedTree = { ...treeMap };
     let updatedNode = updatedTree[key];
     updatedNode["isChecked"] = val;
+    updatedNode["isIntermediate"] = false;
     setTreeMap({ ...updatedTree });
     if (node.children && node.children.length > 0) {
       for (let i = 0; i < node.children.length; i++) {
@@ -40,6 +41,45 @@ function NestedCheckbox(props) {
       }
     } else {
       onChange(treeMap);
+    }
+  };
+
+  const changeIntermediateVal = (parentId) => {
+    if (!parentId) {
+      return;
+    }
+    let checkedCount = 0;
+    let unCheckedCount = 0;
+    let intermediateCount = 0;
+    let updatedTreeMap = { ...treeMap };
+    let siblings = value?.filter((node) => node.parentId == parentId);
+    for (let i = 0; i < siblings.length; i++) {
+      let name = siblings[i]?.name;
+      if (treeMap[name].isIntermediate) {
+        intermediateCount++;
+        break;
+      } else if (treeMap[name].isChecked) {
+        checkedCount++;
+      } else {
+        unCheckedCount++;
+      }
+    }
+    if (intermediateCount > 0) {
+      updatedTreeMap[parentId]["isIntermediate"] = true;
+    } else if (checkedCount === siblings.length) {
+      updatedTreeMap[parentId]["isIntermediate"] = false;
+      updatedTreeMap[parentId]["isChecked"] = true;
+    } else if (unCheckedCount === siblings.length) {
+      updatedTreeMap[parentId]["isIntermediate"] = false;
+      updatedTreeMap[parentId]["isChecked"] = false;
+    } else {
+      updatedTreeMap[parentId]["isIntermediate"] = true;
+    }
+    setTreeMap(updatedTreeMap);
+    let grandParent = value.filter((node) => node.name == parentId)[0]
+      ?.parentId;
+    if (grandParent) {
+      changeIntermediateVal(grandParent);
     }
   };
 
@@ -69,13 +109,17 @@ function NestedCheckbox(props) {
               />
               <Checkbox
                 label={d.name}
+                isIntermediate={
+                  treeMap[d.name] && treeMap[d.name].isIntermediate
+                }
                 isChecked={treeMap[d.name] && treeMap[d.name].isChecked}
-                onChange={() =>
+                onChange={() => {
                   changeCheckVal(
                     d,
                     treeMap[d.name] && treeMap[d.name].isChecked ? false : true
-                  )
-                }
+                  );
+                  changeIntermediateVal(d.parentId);
+                }}
               />
             </div>
             {expandChildren[index] && !isLeafNode && (
