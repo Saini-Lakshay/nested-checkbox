@@ -93,47 +93,56 @@ function NestedCheckbox(props) {
   return (
     <div>
       {treeData?.map((d, index) => {
-        let isLeafNode = d?.children?.length == 0;
-        return (
-          <div key={`dataName${index}`} className="nested_data_wrapper">
-            {(expandChildren[index] ||
-              (isLeafNode && !treeMap[d.name]?.isRoot)) && (
-              <hr className={`${isLeafNode ? "leaf_hr" : "nonleaf_hr"}`} />
-            )}
-            <div className="expandToggler_wrapper">
-              <ExpandToggler
-                isExpanded={expandChildren[index]}
-                onToggle={() => toggleExpandChildren(index)}
-                showToggler={!isLeafNode}
-              />
-              <Checkbox
-                label={d.name}
-                isIntermediate={
-                  treeMap[d.name] && treeMap[d.name].isIntermediate
-                }
-                isChecked={treeMap[d.name] && treeMap[d.name].isChecked}
-                onChange={() => {
-                  changeCheckVal(
-                    d,
-                    treeMap[d.name] && treeMap[d.name].isChecked ? false : true,
-                    { ...treeMap }
-                  );
-                  changeIntermediateVal(d.parentId, { ...treeMap });
-                }}
-              />
-            </div>
-            {expandChildren[index] && !isLeafNode && (
-              <div key={`nested-children`} className={`nested_children`}>
-                <NestedCheckbox
-                  value={value}
-                  treeDataProps={d.children}
-                  treeMapProps={treeMap}
-                  onChange={onChange}
+        if (d) {
+          let isLeafNode = d?.children?.length == 0;
+          let fontProps = {
+            fontWeight: d.parentId != null && isLeafNode ? "400" : "600",
+            color: d.parentId != null && isLeafNode ? "#7A7A7A" : "#0D2238",
+          };
+          return (
+            <div key={`dataName${index}`} className="nested_data_wrapper">
+              {(expandChildren[index] ||
+                (isLeafNode && !treeMap[d.name]?.isRoot)) && (
+                <hr className={`${isLeafNode ? "leaf_hr" : "nonleaf_hr"}`} />
+              )}
+              <div className="expandToggler_wrapper">
+                <ExpandToggler
+                  isExpanded={expandChildren[index]}
+                  onToggle={() => toggleExpandChildren(index)}
+                  showToggler={!isLeafNode}
+                />
+                <Checkbox
+                  label={d.name}
+                  isIntermediate={
+                    treeMap[d.name] && treeMap[d.name].isIntermediate
+                  }
+                  isChecked={treeMap[d.name] && treeMap[d.name].isChecked}
+                  onChange={() => {
+                    changeCheckVal(
+                      d,
+                      treeMap[d.name] && treeMap[d.name].isChecked
+                        ? false
+                        : true,
+                      { ...treeMap }
+                    );
+                    changeIntermediateVal(d.parentId, { ...treeMap });
+                  }}
+                  labelStyle={{ ...fontProps }}
                 />
               </div>
-            )}
-          </div>
-        );
+              {expandChildren[index] && !isLeafNode && (
+                <div key={`nested-children`} className={`nested_children`}>
+                  <NestedCheckbox
+                    value={value}
+                    treeDataProps={d.children}
+                    treeMapProps={treeMap}
+                    onChange={onChange}
+                  />
+                </div>
+              )}
+            </div>
+          );
+        }
       })}
     </div>
   );

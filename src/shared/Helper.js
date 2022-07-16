@@ -10,6 +10,12 @@ export const listToTreeData = (listData = []) => {
   for (i = 0; i < listData.length; i++) {
     node = listData[i];
     if (node.parentId !== null) {
+      if (!listData[map[node.parentId]]) {
+        alert("Data not correct, parent node missing");
+        treeData = [];
+        map = {};
+        return { treeData, map };
+      }
       listData[map[node.parentId]].children.push(node);
     } else {
       treeData.push(node);
