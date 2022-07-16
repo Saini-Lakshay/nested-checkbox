@@ -1,70 +1,31 @@
-# Getting Started with Create React App
+# About
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This app includes a nested checkbox component that takes data(example below) and an onChange function(as a callback function) as the parameters same as an [input] element of a form.
 
-## Available Scripts
 
-In the project directory, you can run:
+# States of Checkbox
 
-### `npm start`
+There are 3 states of a checkbox:
+1. Checked : if the checkbox is checked (along with its children checked).
+2. Unchecked : if the checkbox is un-checked (along with its children un-checked).
+3. Intermediate : if some children are checked and some are un-checked.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+State of the checkbox is depicted through the color of the checkbox.
+-> transparent : not checked
+-> green : checked
+-> orange : intermediate
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Note: 
+-> state of a checkbox can be manually changed to checked or unchecked by clicking on checkbox. intermediate state is automatically set for a checkbox.
+-> if a parent's state is toggled then the state of all children are also set to parent's toggled state(checked or unchecked).
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+# Expanding/Shrinking the children of a checkbox
 
-### `npm run build`
+If a checkbox has children then a + icon will appear along with it which can be pressed to see all immediate children of that checkbox.
+On opening of the children that + is converted to - icon and can be clicked to shrink all children of that checkbox.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+# Scope of a checkbox
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Scope of a checkbox is defined as the children of that checkbox which is represented by a vertical line in the component.
+All checkboxes with no children and which have some parent are connected by horizontal lines to their parent.
