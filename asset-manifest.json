@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/nested-checkbox/static/css/main.987a4175.css",
-    "main.js": "/nested-checkbox/static/js/main.056be9e8.js",
+    "main.js": "/nested-checkbox/static/js/main.addf41c8.js",
     "static/js/787.cd65be6b.chunk.js": "/nested-checkbox/static/js/787.cd65be6b.chunk.js",
     "index.html": "/nested-checkbox/index.html",
     "main.987a4175.css.map": "/nested-checkbox/static/css/main.987a4175.css.map",
-    "main.056be9e8.js.map": "/nested-checkbox/static/js/main.056be9e8.js.map",
+    "main.addf41c8.js.map": "/nested-checkbox/static/js/main.addf41c8.js.map",
     "787.cd65be6b.chunk.js.map": "/nested-checkbox/static/js/787.cd65be6b.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.987a4175.css",
-    "static/js/main.056be9e8.js"
+    "static/js/main.addf41c8.js"
   ]
 }
