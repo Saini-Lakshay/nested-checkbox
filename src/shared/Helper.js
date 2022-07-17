@@ -26,7 +26,7 @@ export const listToTreeData = (listData = []) => {
     map[listData[i].name] = {
       isChecked: false,
       isRoot: isRoot,
-      idChecked: false,
+      isChecked: false,
       isIntermediate: false,
     };
   }
