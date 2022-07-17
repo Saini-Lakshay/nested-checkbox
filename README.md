@@ -37,7 +37,7 @@ All checkboxes with no children and which have some parent are connected by hori
 Data could be unsorted in any form:
 
 ```json
-("data" = [
+data = [
   {
     "name": "Sports",
     "parentId": null
@@ -102,5 +102,5 @@ Data could be unsorted in any form:
     "name": "GT 2",
     "parentId": "Gujarat Titans"
   }
-])
+]
 ```
