@@ -2,6 +2,8 @@
 
 This app includes a nested checkbox component that takes data(example below) and an onChange function(as a callback function) as the parameters same as an <input /> element of a form.
 
+To access an example with below provided dummy data visit : <a href="https://saini-lakshay.github.io/nested-checkbox/">here</a>
+
 
 # States of Checkbox
 
