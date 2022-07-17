@@ -1,5 +1,13 @@
 function Checkbox(props) {
-  const { label, isIntermediate, isChecked, onChange, labelStyle } = props;
+  const {
+    label,
+    isIntermediate,
+    isChecked,
+    onChange,
+    labelStyle,
+    intermediateColor,
+  } = props;
+  let interColor = intermediateColor ? intermediateColor : "orange";
 
   return (
     <div id="checkbox_wrapper">
@@ -12,7 +20,7 @@ function Checkbox(props) {
           style={
             isIntermediate
               ? {
-                  backgroundColor: "orange",
+                  backgroundColor: interColor,
                 }
               : {}
           }

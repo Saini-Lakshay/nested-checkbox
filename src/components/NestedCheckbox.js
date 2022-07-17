@@ -4,7 +4,13 @@ import ExpandToggler from "./ExpandToggler";
 import { listToTreeData } from "../shared/Helper";
 
 function NestedCheckbox(props) {
-  let { value, onChange, treeDataProps, treeMapProps } = props;
+  let {
+    value,
+    onChange,
+    treeDataProps,
+    treeMapProps,
+    intermediateColor,
+  } = props;
 
   const [treeData, setTreeData] = useState([]);
   const [treeMap, setTreeMap] = useState({});
@@ -128,12 +134,14 @@ function NestedCheckbox(props) {
                     changeIntermediateVal(d.parentId, { ...treeMap });
                   }}
                   labelStyle={{ ...fontProps }}
+                  intermediateColor={intermediateColor}
                 />
               </div>
               {expandChildren[index] && !isLeafNode && (
                 <div key={`nested-children`} className={`nested_children`}>
                   <NestedCheckbox
                     value={value}
+                    intermediateColor={intermediateColor}
                     treeDataProps={d.children}
                     treeMapProps={treeMap}
                     onChange={onChange}

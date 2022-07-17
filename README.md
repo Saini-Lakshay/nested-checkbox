@@ -4,10 +4,10 @@ This app includes a nested checkbox component that takes data(example below) and
 
 To access an example with below provided dummy data visit : <a href="https://saini-lakshay.github.io/nested-checkbox/">here</a>
 
-
 # States of Checkbox
 
 There are 3 states of a checkbox:
+
 1. Checked : if the checkbox is checked (along with its children checked).
 2. Unchecked : if the checkbox is un-checked (along with its children un-checked).
 3. Intermediate : if some children are checked and some are un-checked.
@@ -15,12 +15,12 @@ There are 3 states of a checkbox:
 State of the checkbox is depicted through the color of the checkbox.<br />
 -> transparent : not checked<br />
 -> green : checked<br />
--> orange : intermediate
+-> orange(default) : intermediate
 
 Note: <br />
 -> state of a checkbox can be manually changed to checked or unchecked by clicking on checkbox. intermediate state is automatically set for a checkbox.<br />
 -> if a parent's state is toggled then the state of all children are also set to parent's toggled state(checked or unchecked).<br />
-
+-> intermediate state's color can be changed by providing [intermediateColor] property and value to the component<br />
 
 # Expanding/Shrinking the children of a checkbox
 
@@ -37,70 +37,70 @@ All checkboxes with no children and which have some parent are connected by hori
 Data could be unsorted in any form:
 
 ```json
-"data" = [
+("data" = [
   {
     "name": "Sports",
-    "parentId": null,
+    "parentId": null
   },
   {
     "name": "Rajasthan Royals",
-    "parentId": "IPL",
+    "parentId": "IPL"
   },
   {
     "name": "Gujarat Titans",
-    "parentId": "IPL",
+    "parentId": "IPL"
   },
   {
     "name": "Study",
-    "parentId": null,
+    "parentId": null
   },
   {
     "name": "Health",
-    "parentId": null,
+    "parentId": null
   },
   {
     "name": "IPL",
-    "parentId": "Sports",
+    "parentId": "Sports"
   },
   {
     "name": "Mumbai Indians",
-    "parentId": "IPL",
+    "parentId": "IPL"
   },
   {
     "name": "MPL",
-    "parentId": "Sports",
+    "parentId": "Sports"
   },
   {
     "name": "Arsenal",
-    "parentId": "MPL",
+    "parentId": "MPL"
   },
   {
     "name": "Chelsea",
-    "parentId": "MPL",
+    "parentId": "MPL"
   },
   {
     "name": "Manchester United",
-    "parentId": "MPL",
+    "parentId": "MPL"
   },
   {
     "name": "NBA",
-    "parentId": "Sports",
+    "parentId": "Sports"
   },
   {
     "name": "Soccer",
-    "parentId": "Sports",
+    "parentId": "Sports"
   },
   {
     "name": "Rugby",
-    "parentId": "Sports",
+    "parentId": "Sports"
   },
   {
     "name": "GT 1",
-    "parentId": "Gujarat Titans",
+    "parentId": "Gujarat Titans"
   },
   {
     "name": "GT 2",
-    "parentId": "Gujarat Titans",
-  },
-]
+    "parentId": "Gujarat Titans"
+  }
+])
 ```

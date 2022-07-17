@@ -10,7 +10,11 @@ function App() {
   console.log(value);
   return (
     <div className="App">
-      <NestedCheckbox value={data} onChange={(val) => setValue(val)} />
+      <NestedCheckbox
+        value={data}
+        onChange={(val) => setValue(val)}
+        // intermediateColor={"red"} // can be used to customize the intermediateState color for checkbox
+      />
     </div>
   );
 }
