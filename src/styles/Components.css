@@ -12,7 +12,7 @@
   width: 100%;
   display: inline-flex;
   align-items: center;
-  padding: 0.2rem;
+  padding: 3px;
   margin: 5px;
   z-index: 2;
 }
@@ -30,7 +30,7 @@
 }
 
 #checkbox_wrapper label {
-  margin-left: 0.6rem;
+  margin-left: 9px;
   max-width: calc(100%);
   overflow-wrap: break-word;
   word-wrap: keep-all;
